@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://mcr.microsoft.com/
-        username: ${{ secrets.AzureAppService_ContainerUsername_5ebb079ccd68476e9690fb4d1693658d }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_63943bd667054644abb78550ff1d9241 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_e4087ea79b8749de820fb94ca4eda6cf }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_c9a3dd2491984ccc96ab654f637dc38f }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: ${{ secrets.AzureAppService_ContainerUsername_5ebb079ccd68476e9690fb4d1693658d }}/appsvc/staticsite:${{ github.sha }}
+        tags: ${{ secrets.AzureAppService_ContainerUsername_e4087ea79b8749de820fb94ca4eda6cf }}/appsvc/staticsite:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'sdchawepapp'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_45d1767f574e44b8b54be401aabb0a15 }}
-        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_5ebb079ccd68476e9690fb4d1693658d }}/appsvc/staticsite:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_c59ec89d07ae40df9e94868e45bd00c0 }}
+        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_e4087ea79b8749de820fb94ca4eda6cf }}/appsvc/staticsite:${{ github.sha }}'
